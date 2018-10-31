@@ -33,8 +33,8 @@ class Curator
 
   def artists_with_multiple_photographs
     hash = @photographs.group_by {|photo| photo.artist_id}
-    # binding.pry
-    hash.select {|artist, photos| photos.count > 1 }
+    artists_ids = hash.select {|artist, photos| photos.count > 1 }.keys
+    @artists.find_all {|artist| artists_ids.include?(artist.id)}
   end
 
 end
