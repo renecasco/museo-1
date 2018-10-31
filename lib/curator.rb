@@ -1,5 +1,6 @@
 require './lib/photograph'
 require './lib/artist'
+require 'pry'
 
 class Curator
   attr_reader :artists,
@@ -24,6 +25,16 @@ class Curator
 
   def find_photograph_by_id(id)
     @photographs.find {|photo| photo.id == id}
+  end
+
+  def find_photographs_by_artist(artist)
+    @photographs.find_all {|photo| photo.artist_id == artist.id}
+  end
+
+  def artists_with_multiple_photographs
+    hash = @photographs.group_by {|photo| photo.artist_id}
+    # binding.pry
+    hash.select {|artist, photos| photos.count > 1 }
   end
 
 end
