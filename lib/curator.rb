@@ -37,4 +37,8 @@ class Curator
     @artists.find_all {|artist| artists_ids.include?(artist.id)}
   end
 
+  def photographs_taken_by_artists_from(country)
+
+  end
+
 end
